@@ -1,0 +1,34 @@
+@apiHost = http://localhost:5082
+@json = application/json
+
+### -----------------------------------------
+### PRODUCTS 
+### -----------------------------------------
+
+### getproducts - lista de productos
+GET {{apiHost}}/api/products
+Accept: {{json}}
+
+### postproducts-valid - valid product (201)
+POST {{apiHost}}/api/products
+Content-Type: {{json}}
+Accept: {{json}}
+
+{
+  "name": "Headset",
+  "category": "Peripherals",
+  "price": 150.00
+}
+
+### postproducts-invalid - ValidationProblem (400)
+# - name empty
+# - price <= 0
+POST {{apiHost}}/api/products
+Content-Type: {{json}}
+Accept: {{json}}
+
+{
+  "name": "",
+  "category": "Peripherals",
+  "price": 0
+}
